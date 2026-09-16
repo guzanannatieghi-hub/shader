@@ -1,0 +1,1 @@
+Fixed Windows Graphics Capture DXGI interop compilation error (IDirect3DDxgiInterfaceAccess) and removed duplicate WIN32_LEAN_AND_MEAN warning.

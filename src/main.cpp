@@ -1,5 +1,4 @@
 
-#define WIN32_LEAN_AND_MEAN
 #include <windows.h>
 #include <dwmapi.h>
 #include <d3d11.h>
@@ -25,6 +24,15 @@
 #pragma comment(lib, "d3dcompiler.lib")
 #pragma comment(lib, "dwmapi.lib")
 #pragma comment(lib, "shlwapi.lib")
+
+
+// Local declaration of the Direct3D surface interop interface.
+// Some Windows SDK / C++/WinRT combinations do not expose the symbol directly.
+struct __declspec(uuid("A9B3D012-3DF2-4EE3-B8D1-8695F457D3C1"))
+IDirect3DDxgiInterfaceAccess : public IUnknown
+{
+    virtual HRESULT STDMETHODCALLTYPE GetInterface(REFIID iid, void** p) = 0;
+};
 
 using Microsoft::WRL::ComPtr;
 namespace WGC = winrt::Windows::Graphics::Capture;
@@ -276,8 +284,12 @@ static D3DWinRT::IDirect3DDevice CreateWinRTDevice(ID3D11Device* dev)
 static ComPtr<ID3D11Texture2D> GetTextureFromSurface(D3DWinRT::IDirect3DSurface const& surface)
 {
     auto access = surface.as<IDirect3DDxgiInterfaceAccess>();
+
     ComPtr<ID3D11Texture2D> tex;
-    winrt::check_hresult(access->GetInterface(IID_PPV_ARGS(&tex)));
+    winrt::check_hresult(access->GetInterface(
+        __uuidof(ID3D11Texture2D),
+        reinterpret_cast<void**>(tex.GetAddressOf())
+    ));
     return tex;
 }
 
