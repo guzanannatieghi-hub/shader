@@ -1,0 +1,35 @@
+ETHEREAL — GITHUB QUICK BUILD
+
+IMPORTANT:
+GitHub cannot build directly from a ZIP file sitting inside the repo.
+You need to UNZIP this package first, then upload all of its contents to the repo.
+
+FAST STEPS:
+1. Download and unzip Ethereal_GitHub_Ready.zip.
+2. On GitHub, create a new empty repository called Ethereal.
+3. Click "uploading an existing file".
+4. Drag ALL files/folders from inside the unzipped Ethereal_GitHub_Ready folder into GitHub.
+   Make sure these are uploaded:
+   - .github
+   - src
+   - CMakeLists.txt
+   - BUILD.bat
+   - RUN.bat
+   - README.txt
+5. Click "Commit changes".
+6. Open the Actions tab.
+7. Click "Build Ethereal".
+8. Click "Run workflow" -> "Run workflow".
+9. Wait for the build to turn green.
+10. Open the finished run and download the "Ethereal" artifact.
+11. Unzip that artifact. Inside is Ethereal.exe.
+
+USE:
+- Open Roblox and join a game first.
+- Then run Ethereal.exe.
+- F8 = change preset
+- F9 = toggle effect
+- +/- = strength
+- Esc = exit
+
+No Visual Studio install is needed on your PC when using GitHub Actions.

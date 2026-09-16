@@ -1,0 +1,2 @@
+Ethereal prototype source generated for personal experimentation.
+Third-party platform names belong to their respective owners.
